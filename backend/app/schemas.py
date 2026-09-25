@@ -13,6 +13,12 @@ class PageResult(BaseModel, Generic[T]):
     total: int
     page: int = 1
     size: int = 20
+    # 信号机到期口径的附加信息：超期数、待排期（缺上次检修日）设备及其清单、当前排序。
+    overdue: int = 0
+    unscheduled: int = 0
+    unscheduled_items: list[Any] = Field(default_factory=list)
+    sort: str | None = None
+    today: str | None = None
 
 
 class ActionResult(BaseModel):
